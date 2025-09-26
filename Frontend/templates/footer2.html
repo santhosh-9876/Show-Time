@@ -1,0 +1,92 @@
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Time</title>
+  {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  
+  <!-- Font Awesome Free CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<style>
+/* Make footer stick to bottom */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto; /* Push footer to bottom */
+}
+
+/* Optional: Mobile nav styling */
+.nav-links a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.nav-links i {
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.foot {
+  background: linear-gradient(135deg, #ff4e50, #f9d423);
+}
+</style>
+
+<body class="mt-5">
+
+<!--------------------------------------------------------- footer ------------------------------------------------------------------------------------>
+<footer class="footer mt-auto sticky-bottom">
+  <!-- mobile footer -->
+  <div class="container foot d-sm-block d-md-none p-0">
+    <div class="nav-links d-flex justify-content-around py-2">
+      <a href="{% url 'movie' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-film"></i>
+        <h6 class="mb-0">Movie</h6>
+      </a>
+
+      <a href="{% url 'music' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-music"></i>
+        <h6 class="mb-0">Music</h6>
+      </a>
+
+      <a href="{% url 'sports' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-football"></i>
+        <h6 class="mb-0">Sport</h6>
+      </a>
+
+      <a href="{% url 'comedy' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-masks-theater"></i>
+        <h6 class="mb-0">Comedy</h6>
+      </a>
+    </div>
+  </div>
+
+  <!-- Desktop Footer -->
+  <div class="container-fluid py-3 bg-black d-none d-md-block">
+    <div class="d-flex justify-content-evenly text-white">
+      <span>@ 2025 Show Time</span>
+      <span>Escobar.in</span>
+      <span>All Rights Reserved</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

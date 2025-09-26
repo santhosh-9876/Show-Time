@@ -1,0 +1,136 @@
+
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+  .one{
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 10px;
+  }
+  
+#fire {
+  
+      font-weight: bold;
+      text-transform: uppercase;
+      background: linear-gradient(
+        to top,
+        #ff0000 0%,
+        #ff6600 30%,
+        #ffcc00 60%,
+        #ffff66 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+    
+  .carousel-item img {
+  width: 100%;               
+  height: 77vh;             
+  object-fit: cover; 
+          
+}
+
+.carousel-caption{
+  position: absolute;
+  top: 170px ;
+   left: -800px; 
+  right: 50px;
+  letter-spacing: 1px;
+  
+}
+
+@media(max-width:1024px){
+  .carousel-caption{
+    position: absolute;
+    top: 120px;
+    left: -450px;
+
+  }
+}
+
+@media(max-width:768px){
+  .carousel-caption{
+    position: absolute;
+    top: 30px;
+    left: -300px;
+    font-size: 10px;
+
+  }
+}
+
+
+@media(max-width:576px){
+  .carousel-caption{
+    position: absolute;
+    top: 20px;
+    left: -150px;
+    font-size: 15px;
+
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 40vh;             
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-item img {
+    height: 30vh;              
+  }
+}
+
+
+</style>
+<div class="container-fluid m-0 p-0" style="background-color: rgb(207, 194, 194); ">
+
+  <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      {% for i in MoviesTicket %}
+        {% if i.nowShowing %}
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="carousel-inner">
+      {% for i in MoviesTicket %}
+        {% if i.nowShowing %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ i.carosel_image.url }}" class="d-block w-100" style="filter: brightness(25%);" alt="{{ i.name }}">
+            <div class="carousel-caption">
+              <h1 class="text-white d-none d-md-block fw-bold">{{ i.name|upper }}</h1>
+              <p class="white d-md-none m-0 d-sm-block">{{ i.name|upper }}</p>
+              <h5 class="text-center text-white d-none d-md-block mt-0 fw-bold mt-lg-4">
+                {{ i.showing_or_IMDB }}
+                <button class="rounded bg-danger text-white border-0 ms-lg-3 p-md-2 p-lg-2">2D</button>
+              </h5>
+              <p class="d-md-none d-sm-block m-0">{{ i.showing_or_IMDB }}</p>
+              <p class="text-center mt-0 d-none fw-bold d-md-block text-white">{{ i.timing }}</p>
+              <p class="text-center mt-0 ms-3 d-sm-block d-md-none text-white">{{ i.timing }}</p>
+              <a href="{% url 'movie_detail' i.name %}" class="text-decoration-none">
+                <button class="btn bg-danger text-white mt-md-0 mt-lg-3 m-sm-0 fw-bold shadow-none">BOOK NOW</button>
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Controls should be outside the loop -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+</div>

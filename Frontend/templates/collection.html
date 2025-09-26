@@ -1,0 +1,360 @@
+
+
+<!-- Now Showing in Indexpage  -->
+
+
+<div  style="background-color: rgb(207, 194, 194); " class="pt-1" >
+  
+<h1 class="section-title fw-bolder ">Movie Ticket</h1>
+  <div class="mt-3 " id="movies">
+    <h1 class="movieshead  ms-5 show ">Now Showing</h1>
+  </div>
+
+ <div class="container  mb-5">
+  
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold "></h2>
+        <a href="{% url 'movie' %}" class="btn btn-link text-decoration-none text-danger fw-bolder">See More<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-right fw-bolder" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+</svg></a>
+    </div>
+    
+    
+
+    <div class="d-flex overflow-auto hide-scrollbar" style="gap: 50px; scroll-behavior: smooth;">
+
+      {% for i in MoviesTicket %}
+      {% if i.nowShowing %}
+        <div class="card shadow flex-shrink-0" style="width: 350px; height: 450px;">
+            <a href="{% url 'movie_detail' i.name %}" class="text-decoration-none">
+            <img class="img-fluid img-thumbnail card-image"
+                style="height: 330px; object-fit: fill; width: 100%;"
+                src="{{i.image.url}}" alt="">
+            <div class="card-body text-center">
+                <h6 class="text-success fw-bold">{{i.showing_or_IMDB}}</h6>
+                <h3 class="text-black">{{i.name | upper}}</h2>
+            </div>
+            </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+
+
+ <div class="movieshead mt-5">
+  <h1 class="ms-5 show">Up Coming</h1>
+</div>
+
+<div class="container mb-5 position-relative">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold "></h2>
+    <a href="{% url 'movie' %}" class="btn btn-link text-decoration-none text-danger fw-bolder">
+      See More
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-right"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 
+          0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 
+          8 4.646 2.354a.5.5 0 0 1 0-.708" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- Left Arrow -->
+  <button class="scroll-btn left-btn-movies d-none d-lg-flex">&#10094;</button>
+
+  <!-- Scrollable Row -->
+  <div class="d-flex overflow-auto hide-scrollbar movies-scroll" style="gap: 50px; scroll-behavior: smooth;">
+    {% for i in MoviesTicket %}
+    {% if i.upcoming %}
+    <div class="card shadow flex-shrink-0" style="width: 350px; height: 450px;">
+      <a href="{% url 'movie_detail' i.name %}" class="text-decoration-none">
+        <img class="img-fluid img-thumbnail card-image"
+          style="height: 330px; object-fit: fill; width: 100%;" src="{{i.image.url}}" alt="">
+        <div class="card-body text-center">
+          <h6 class="text-danger fw-bold">{{i.showing_or_IMDB}}</h6>
+          <h3 class="text-black">{{i.name | upper}}</h3>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Right Arrow -->
+  <button class="scroll-btn right-btn-movies d-none d-lg-flex">&#10095;</button>
+</div>
+
+
+<h1 class="section-title fw-bolder">Music Concert</h1>
+<div class="container mb-5 position-relative">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold"></h2>
+    <a href="{% url 'music' %}" class="btn btn-link text-decoration-none text-danger fw-bolder">
+      See More
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-right"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 
+          .708l-6 6a.5.5 0 0 1-.708-.708L10.293 
+          8 4.646 2.354a.5.5 0 0 1 0-.708" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- Left Arrow (visible lg only) -->
+  <button class="scroll-btn left-btn-music d-none d-lg-flex">&#10094;</button>
+
+  <!-- Scrollable Content -->
+  <div class="d-flex overflow-auto hide-scrollbar music-scroll" style="gap: 50px; scroll-behavior: smooth;">
+    {% for i in MusicConsert %}
+    <div class="card shadow flex-shrink-0" style="width: 350px; height: 450px;">
+      <a href="{% url 'music_detail' i.name %}" class="text-decoration-none">
+        <img class="img-fluid img-thumbnail card-image"
+          style="height: 330px; object-fit: fill; width: 100%;" src="{{i.image.url}}" alt="">
+        <div class="card-body text-center">
+          {% if i.upcoming %}
+          <h6 class="text-danger fw-bolder">{{i.showing_time}}</h6>
+          {% endif %}
+           {% if i.nowShowing %}
+          <h6 class="text-success fw-bolder">{{i.showing_time}}</h6>
+          {% endif %}
+          <h3 class="text-black">{{i.name | upper}}</h3>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Right Arrow (visible lg only) -->
+  <button class="scroll-btn right-btn-music d-none d-lg-flex">&#10095;</button>
+</div>
+
+<h1 class="section-title fw-bolder">Sports Event</h1>
+<div class="container mb-5 position-relative">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold"></h2>
+    <a href="{% url 'sports' %}" class="btn btn-link text-decoration-none text-danger fw-bolder">
+      See More
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-right"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 
+          .708l-6 6a.5.5 0 0 1-.708-.708L10.293 
+          8 4.646 2.354a.5.5 0 0 1 0-.708" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- Left Arrow (visible on lg only) -->
+  <button class="scroll-btn left-btn d-none d-lg-flex">&#10094;</button>
+
+  <!-- Scrollable Content -->
+  <div class="d-flex overflow-auto hide-scrollbar sports-scroll" style="gap: 50px; scroll-behavior: smooth;">
+    {% for i in SportsEvent %}
+    <div class="card shadow flex-shrink-0" style="width: 350px; height: 450px;">
+      <a href="{% url 'sport_detail' i.name %}" class="text-decoration-none">
+        <img class="img-fluid img-thumbnail card-image"
+          style="height: 330px; object-fit: fill; width: 100%;" src="{{i.image.url}}" alt="">
+        <div class="card-body text-center">
+          {% if i.nowShowing %}
+          <h6 class="text-success fw-bolder">{{i.showing_time}}</h6>
+          {% endif %}
+          {% if i.upcoming %}
+          <h6 class="text-danger fw-bolder">{{i.showing_time}}</h6>
+          {% endif %}
+          <h3 class="text-black">{{i.name | upper}}</h3>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Right Arrow (visible on lg only) -->
+  <button class="scroll-btn right-btn d-none d-lg-flex">&#10095;</button>
+</div>
+
+
+<h1 class="section-title fw-bolder">Comedy Show</h1>
+<div class="container mb-5 position-relative">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold"></h2>
+    <a href="{% url 'comedy' %}" class="btn btn-link text-decoration-none text-danger fw-bolder">
+      See More
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-right"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 
+          .708l-6 6a.5.5 0 0 1-.708-.708L10.293 
+          8 4.646 2.354a.5.5 0 0 1 0-.708" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- Left Arrow (visible lg only) -->
+  <button class="scroll-btn left-btn d-none d-lg-block">&#10094;</button>
+
+  <!-- Scrollable Content -->
+  <div class="d-flex overflow-auto hide-scrollbar comedy-scroll" style="gap: 50px; scroll-behavior: smooth;">
+    {% for i in ComedyShow %}
+    <div class="card shadow flex-shrink-0" style="width: 350px; height: 450px;">
+      <a href="{% url 'comedy_detail' i.name %}" class="text-decoration-none">
+        <img class="img-fluid img-thumbnail card-image"
+          style="height: 330px; object-fit: fill; width: 100%;" src="{{i.image.url}}" alt="">
+        <div class="card-body text-center">
+          {% if i.nowShowing %}
+          <h6 class="text-success fw-bold">{{i.showing_time}}</h6>
+          {% endif %}
+           {% if i.upcoming %}
+          <h6 class="text-danger fw-bold">{{i.showing_time}}</h6>
+          {% endif %}
+          
+          <h3 class="text-black">{{i.name | upper}}</h3>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Right Arrow (visible lg only) -->
+  <button class="scroll-btn right-btn d-none d-lg-block">&#10095;</button>
+</div>
+
+
+<script>
+document.querySelectorAll(".scroll-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    // Find the nearest scroll container for this button
+    const container = btn.closest(".container").querySelector(".d-flex.overflow-auto");
+    
+    // Determine scroll direction
+    const isLeft = btn.classList.contains("left-btn-movies") ||
+                   btn.classList.contains("left-btn-music") ||
+                   btn.classList.contains("left-btn-sports") ||
+                   btn.classList.contains("left-btn-comedy");
+
+    // Scroll smoothly by card width (adjust if needed)
+    container.scrollBy({ left: isLeft ? -320 : 320, behavior: "smooth" });
+  });
+});
+</script>
+
+
+<style>
+  .card{
+    box-shadow: 0 0 12px black;
+  }
+  
+    
+/* Hide scrollbar */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(57, 45, 45, 0.5);
+  border: none;
+  color: white;
+  font-size: 1.5rem;   /* slightly smaller for balance */
+  width: 45px;         /* fixed width */
+  height: 45px;        /* fixed height */
+  cursor: pointer;
+  border-radius: 50%;  /* fully round */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+
+.left-btn {
+  left: -20px;
+}
+
+.right-btn {
+  right: -20px;
+}
+
+    .scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white; /* red shade */
+  color:black;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.left-btn-movies,
+.left-btn-music {
+  left: -25px; /* adjust inside container */
+}
+
+.right-btn-movies,
+.right-btn-music {
+  right: -25px;
+}
+
+
+
+    /* body{
+        background-color: rgb(207, 194, 194);
+    } */
+
+/* Hide scrollbar but keep scroll */
+.hide-scrollbar {
+    -ms-overflow-style: none;  /* IE/Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;  /* Chrome/Safari */
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@600;700&display=swap');
+
+.section-title {
+  font-family: 'Bangers', cursive;   /* Main comedy poster font */
+  font-size: clamp(2rem, 5vw, 4rem);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 40px 0;
+  color: #ff1744;
+  text-shadow: 
+       2px 2px 4px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 600px) {
+  .section-title {
+     font-family: 'Bangers', cursive;   /* Main comedy poster font */
+  font-size: clamp(2rem, 5vw, 4rem);  /* Clean fallback on mobile */
+    letter-spacing: 1px;
+    color: #ff1744;
+    text-shadow: 
+        2px 2px 4px rgba(0,0,0,0.5);
+  }
+}
+
+
+
+</style>
+

@@ -1,0 +1,93 @@
+
+{% load static %}
+
+ <style>
+    
+/* Make footer stick to bottom */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto; /* Push footer to bottom */
+}
+
+/* Optional: Mobile nav styling */
+.nav-links a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.nav-links a:hover {
+  background-color: #1a1a1a;
+}
+
+.nav-links img {
+  margin-bottom: 2px;
+}
+</style> 
+
+
+<body>
+  <!-- <body> -->
+  <b>
+ <header class="sticky-top">
+   <nav class="navbar navbar-expand-md bg-black navbar-dark py-4 ">
+      <div class="container">
+         <h1 class="title">SHOWTIME</h1>
+         
+         <button class="navbar-toggler border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         
+         <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'index' %}">
+      <i class="fas fa-home"></i> Home
+    </a>
+  </li>
+
+  {% if user.is_authenticated %}
+  <li class="nav-item">
+    <a class="nav-link active" href="#">
+      <i class="fas fa-user"></i>  {{ user.username }}
+    </a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link active" href="{% url 'ticket_show' %}">
+      <i class="bi bi-bookmarks-fill"></i>Tickets
+    </a></li>
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'logout' %}">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+  </li>
+  {% else %}
+  <li class="nav-item">
+    <a class="nav-link  active" href="{% url 'register' %}">
+      <i class="fas fa-user-plus"></i> Register
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link  active" href="{% url 'login' %}">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </a>
+  </li>
+  {% endif %}
+</ul>
+
+         </div>
+      </div>
+   </nav>
+</header>
+</body>

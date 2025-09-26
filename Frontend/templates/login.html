@@ -1,0 +1,95 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+   <link rel="stylesheet" href="{% static 'style.css' %}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+<body style="background-color: rgb(212, 207, 207);">
+   {% include 'navbar1.html' %}
+
+
+           <div class="container-fluid" style="height: 79vh;">
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4"> <!-- responsive column -->
+      <h3 class="text-center">Login</h3>
+
+      <!-- Success messages -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      <!-- Non-field errors (like invalid credentials) -->
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {% for error in form.non_field_errors %}
+            <div>{{ error }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- Login form -->
+      <div class="my-3">
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          <!-- Username -->
+          <div class="form-group mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" 
+                   class="form-control {% if form.username.errors %}is-invalid{% endif %}" 
+                   id="username" 
+                   name="username" 
+                   value="{{ form.username.value|default:'' }}">
+            {% for error in form.username.errors %}
+              <div class="invalid-feedback d-block">{{ error }}</div>
+            {% endfor %}
+          </div>
+
+          <!-- Password -->
+          <div class="form-group mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" 
+                   class="form-control {% if form.password.errors %}is-invalid{% endif %}" 
+                   id="password" 
+                   name="password">
+            {% for error in form.password.errors %}
+              <div class="invalid-feedback d-block">{{ error }}</div>
+            {% endfor %}
+          </div>
+
+          <!-- Actions -->
+          <div class="my-3 d-flex justify-content-between align-items-center">
+            <a href="{% url 'forgot_password' %}">Forgot Password?</a>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Register redirect -->
+      <div class="text-center mt-3">
+        <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+     {% include 'footer.html' %}
+</body>
+
+</html>

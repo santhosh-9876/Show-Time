@@ -1,0 +1,113 @@
+{% load static %}
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@600;700&display=swap');
+
+body {
+    background-color: rgb(246, 214, 219);
+}
+
+.section-title {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    
+    color: orangered;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.navbar {
+    background: linear-gradient(135deg, #ff4e50, #f9d423);
+}
+
+.doo {
+    font-family: "STIX Two Text", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.one {
+    position: relative;
+    padding: 6px 14px;
+    font-weight: 600;
+    color: #222 !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-family: "STIX Two Text", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.one::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.one:hover {
+    color: white !important;
+}
+
+.one:hover::after {
+    width: 100%;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
+
+
+
+<div class="container sticky-top my-4">
+    <nav class="navbar fw-bold">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+
+            <!-- Desktop Navbar -->
+            <div class="d-none d-md-flex flex-grow-1  justify-content-start">
+                <a class="navbar-brand one text-black fw-bolder ms-3 ms-lg-4" href="{% url 'index' %}">Home</a>
+                <a class="navbar-brand one text-black fw-bolder ms-3 ms-lg-4" href="{% url 'movie' %}">Movies</a>
+                <a class="navbar-brand one text-black fw-bolder ms-3 ms-lg-4" href="{% url 'music' %}">Music</a>
+                <a class="navbar-brand one text-black fw-bolder ms-3 ms-lg-4" href="{% url 'comedy' %}">Comedy</a>
+                <a class="navbar-brand one text-black fw-bolder ms-3 ms-lg-4" href="{% url 'sports' %}">Sports</a>
+            </div>
+
+            <!-- Mobile Navbar -->
+            <div class="ms-1 d-md-none d-flex align-items-center">
+                <a href="{% url 'index' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="currentColor"
+                        class="bi bi-arrow-left-circle-fill text-black" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+                    </svg>
+                </a>
+                <h1 class="doo ms-2 mt-2">Comedy Show</h1>
+            </div>
+
+            <div class="ms-lg-5 ps-lg-5">
+                <a class="navbar-brand text-black ms-lg-5 ps-lg-5" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="currentColor"
+                        class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                        <path fill-rule="evenodd"
+                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>

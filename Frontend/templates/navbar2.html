@@ -1,0 +1,52 @@
+
+
+<!------------------------------------------------------- Modal register ------------------------------------------------------->
+
+
+
+
+<!-- nav link title -->
+
+ <style>
+   
+.subtitle ul li a {
+    color: #FD6569;
+    font-family: "Tagesschrift", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    padding: 5px;
+
+}
+
+
+.subtitle ul li a:hover {
+    color: black;
+    background-color: #FD6569;
+    border-radius: 5px;
+}
+ </style> 
+
+
+
+<div class="container d-flex justify-content-center mt-3 ">
+  <div class="nav">
+    <div class="subtitle">
+      <ul class="list-inline">
+
+        <div class="row d-flex flex-row">
+          {% for item in Category %}
+          <div class="col-6 col-md-3">
+            <li class="list-inline-item">
+              <div class="d-flex flex-column align-items-center">
+                <img src="{{ item.image.url }}" alt="" style="width: 30px; height: 30px;">
+                <a class="text-decoration-none esco" style="white-space: pre;" href="{% url item.link_name %}">{{ item.name }}</a>
+              </div>
+            </li>
+          </div>
+          {% endfor %}
+
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>

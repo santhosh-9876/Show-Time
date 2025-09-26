@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Seat Booking</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome CDN for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    
+
+<style>
+    
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap');
+body {
+    background-color: #111;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    overflow-x: auto; /* allow horizontal scrolling for the page */
+}
+
+.container-wrapper {
+    display: flex;
+    justify-content: center; /* keep screen always centered */
+    padding: 20px;
+    min-width: 400px; /* minimum width for small screens */
+}
+
+.screen {
+    border: 2px solid #0ff;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    color: #0ff;
+    font-weight: bold;
+    box-shadow: 0 0 12px #0ff;
+    text-shadow: 0 0 5px #0ff;
+    min-width: 300px;
+}
+
+.seat-row-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.seat-row-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.seat-row-wrapper::-webkit-scrollbar-thumb {
+    background: #0ff;
+    border-radius: 3px;
+}
+
+.row-label {
+    min-width: 40px;
+    height: 40px;
+    margin: 3px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #0f0;
+    color: black;
+    font-weight: bold;
+    border-radius: 6px;
+    flex: 0 0 auto;
+}
+
+.seat {
+    min-width: 40px;
+    height: 40px;
+    margin: 3px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 6px;
+    border: 2px solid #0f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    flex: 0 0 auto;
+}
+
+.seat.available:hover {
+    background: linear-gradient(45deg, #00ff99, #00ccff);
+    transform: scale(1.1);
+    color: black;
+}
+
+.seat.booked {
+    background-color: gray;
+    cursor: not-allowed;
+    border: 2px solid #555;
+    color: #333;
+}
+
+.seat.selected {
+    background: linear-gradient(45deg, #ff9900, #ff3300);
+    color: white;
+    border: 2px solid #ffcc00;
+}
+
+#seat-info {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 300px;
+}
+
+#book-button {
+    margin-top: 15px;
+    padding: 10px 30px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff0066, #ffcc00);
+    border: none;
+    color: black;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+#book-button:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .seat, .row-label {
+        min-width: 30px;
+        height: 30px;
+        line-height: 30px;
+        margin: 2px;
+        font-size: 0.8rem;
+    }
+    .screen {
+        font-size: 1rem;
+        padding: 10px;
+    }
+    #seat-info {
+        font-size: 0.9rem;
+        min-width: 200px;
+    }
+    #book-button {
+        font-size: 0.9rem;
+        padding: 8px 20px;
+    }
+}
+
+.custom-hover::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  background-color: #c02032; /* underline color */
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.custom-hover:hover::after {
+  width: 100%;
+}
+
+.nav-link {
+  color: #222 !important;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+
+.seat-row-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    margin-bottom: 15px; /* default spacing between rows */
+    
+}
+
+.row-label {
+    min-width: 50px; /* label width */
+    height: 50px;
+    margin: 4px; /* spacing around label */
+    line-height: 50px;
+    text-align: center;
+    background-color: #0f0;
+    color: black;
+    font-weight: bold;
+    border-radius: 6px;
+    flex: 0 0 auto;
+    
+}
+
+.seat {
+    min-width: 50px; /* seat width */
+    height: 50px; /* seat height */
+    margin: 4px; /* spacing between seats */
+    text-align: center;
+    line-height: 50px;
+    border-radius: 6px;
+    border: 2px solid #0f0;
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Responsive spacing adjustments for smaller devices */
+
+@media (min-width: 1200px) {
+    .seat, .row-label {
+        margin: 8px;   /* increase gap between seats */
+        min-width: 55px; /* optional: slightly bigger seats */
+        height: 55px;
+        line-height: 55px;
+        font-size: 1rem;
+    }
+
+    .seat-row-wrapper {
+        gap: 120px; /* adds extra horizontal gap */
+    }
+}
+
+
+@media (max-width: 992px) {
+    .seat, .row-label {
+        min-width: 40px;
+        height: 40px;
+        line-height: 40px;
+        margin: 3px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .seat, .row-label {
+        min-width: 35px;
+        height: 35px;
+        line-height: 35px;
+        margin: 2px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .seat, .row-label {
+        min-width: 30px;
+        height: 30px;
+        line-height: 30px;
+        margin: 2px;
+        font-size: 0.7rem;
+    }
+}
+
+
+
+
+    /* Navbar hover underline effect */
+        .navbar-brand {
+            position: relative;
+            color: black !important;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            left: 0;
+            bottom: -3px;
+            background-color: black;
+            transition: width 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .navbar-brand:hover::after {
+            width: 100%;
+        }
+
+        .navbar-brand:hover {
+            color:  #c02032 !important; /* Slight darken on hover */
+        }
+
+        /* Dropdown item hover */
+        .dropdown-item:hover {
+            background-color: #e0f7fa; /* light aqua on hover */
+            color: black !important;
+        }
+
+        
+.doo {
+    font-family: "STIX Two Text", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+@media (min-width: 1200px) {
+    #seat-container > div {
+        margin-bottom: 5px !important; /* row spacing */
+        
+    }
+}
+
+/* Optional: slightly smaller for medium screens */
+@media (min-width: 992px) and (max-width: 1199px) {
+    #seat-container > div {
+        margin-bottom: 5px;
+    }
+}
+
+</style>
+</head>
+<body>
+<!------------------------------------------------------Navbar --------------------------------------------------------- -->
+
+
+<div class="container  sticky-top my-lg-4 mt-md-4 mt-5  " >
+  <nav class="navbar py-3 rounded" style="background-color: aqua;">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+      <!-- Desktop Navbar -->
+      <div class="d-none d-md-flex flex-grow-1 justify-content-start">
+        <a class="navbar-brand one text-black fw-bolder ms-3 ms-lg-4" href="{% url 'index' %}">Home</a>
+        <a class="navbar-brand one text-black fw-bolder ms-3 ms-lg-4" href="{% url 'movie' %}">Movies</a>
+        <a class="navbar-brand one text-black fw-bolder ms-3 ms-lg-4" href="{% url 'music' %}">Music</a>
+        <a class="navbar-brand one text-black fw-bolder ms-3 ms-lg-4" href="{% url 'comedy' %}">Comedy</a>
+        <a class="navbar-brand one text-black fw-bolder ms-3 ms-lg-4" href="{% url 'sports' %}">Sports</a>
+      </div>
+
+      <!-- Mobile Navbar -->
+      <div class="ms-1 d-md-none d-flex align-items-center  ">
+        <a href="{% url 'index' %}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="currentColor"
+               class="bi bi-arrow-left-circle-fill text-black" viewBox="0 0 16 16">
+            <path
+              d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 
+              2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 
+              .708.708L5.707 7.5z"/>
+          </svg>
+        </a>
+        <h1 class="doo ms-2 mt-2 text-black ">Movie Ticket</h1>
+      </div>
+      
+
+      <!-- User Section -->
+      <div class="ms-lg-5 ps-lg-5">
+        {% if user.is_authenticated %}
+        <!-- Desktop User Menu -->
+        <div class="d-none d-lg-block">
+          <div class="d-flex align-items-center">
+            <a class="nav-link active" href="#">
+              <i class="fas fa-user"></i> {{ user.username }}
+            </a>
+            <a class="nav-link active ms-3" href="{% url 'logout' %}">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile User Dropdown -->
+        <div class="dropdown d-lg-none">
+          <a class="nav-link p-0" href="#" id="userDropdown" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+            <!-- Only SVG (no caret) -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                 class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+              <path fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8
+                       m8-7a7 7 0 0 0-5.468 11.37
+                       C3.242 11.226 4.805 10 8 10
+                       s4.757 1.225 5.468 2.37
+                       A7 7 0 0 0 8 1"/>
+            </svg>
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-end text-black" aria-labelledby="userDropdown" >
+            <li>
+              <a class="dropdown-item text-black" href="#">
+                <i class="fas fa-user"></i> {{ user.username }}
+              </a>
+            </li>
+             <li><hr class="dropdown-divider"></li>
+             <li  class="dropdown-item text-black "><a class="text-decoration-none text-black" href="{% url 'ticket_show' %}">
+      <i class="bi bi-bookmarks-fill"></i> Tickets
+    </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item text-black" href="{% url 'logout' %}">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+        {% else %}
+          <a class="navbar-brand text-black ms-lg-5 ps-lg-5" href="{% url 'login' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="currentColor"
+                 class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+              <path fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8
+                       m8-7a7 7 0 0 0-5.468 11.37
+                       C3.242 11.226 4.805 10 8 10
+                       s4.757 1.225 5.468 2.37
+                       A7 7 0 0 0 8 1"/>
+            </svg>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+
+<div class="container-wrapper flex-column align-items-center">
+    <div class="screen mb-lg-5">
+        SCREEN
+    </div>
+
+    <div id="seat-container" class="d-flex flex-column align-items-center "></div>
+
+    <p id="seat-info">Select seats (₹200 each)</p>
+  
+    <button id="book-button" class="rounded "  >Book Now</button>
+</div>
+
+
+  <!-- ✅ Safe JSON injection -->
+  {{ booked_seats|json_script:"booked-seats" }}
+  {{ movie.id|json_script:"movie-id" }}
+  {{ selected_date|json_script:"selected-date" }}
+  {{ selected_time|json_script:"selected-time" }}
+
+
+<!-- Bootstrap 5 JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const rows = ["A","B","C","D","E","F","G"];
+    const cols = 9;
+    const seatPrice = 200;
+    let selectedSeats = [];
+
+    // 🎬 Safe data from Django
+    const bookedSeats = JSON.parse(document.getElementById("booked-seats").textContent);
+    const movieId = JSON.parse(document.getElementById("movie-id").textContent);
+    const selectedDate = JSON.parse(document.getElementById("selected-date").textContent);
+    const selectedTime = JSON.parse(document.getElementById("selected-time").textContent);
+
+    const container = document.getElementById("seat-container");
+    const info = document.getElementById("seat-info");
+
+    // Generate seats dynamically
+    rows.forEach(row => {
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("d-flex", "mb-2", "align-items-center");
+
+        const rowLabel = document.createElement("div");
+        rowLabel.classList.add("row-label", "me-2", "fw-bold");
+        rowLabel.textContent = row;
+        rowDiv.appendChild(rowLabel);
+
+        for (let i = 1; i <= cols; i++) {
+            const seatNum = row + i;
+            const seatDiv = document.createElement("div");
+            seatDiv.classList.add("seat", "mx-1", "text-center");
+            seatDiv.textContent = i;
+
+            if (bookedSeats.includes(seatNum)) {
+                seatDiv.classList.add("booked");
+            } else {
+                seatDiv.classList.add("available");
+                seatDiv.addEventListener("click", () => selectSeat(seatDiv, seatNum));
+            }
+
+            rowDiv.appendChild(seatDiv);
+        }
+        container.appendChild(rowDiv);
+    });
+
+    function selectSeat(seatDiv, seatNum) {
+        if (seatDiv.classList.contains("booked")) return;
+
+        if (seatDiv.classList.contains("selected")) {
+            seatDiv.classList.remove("selected");
+            selectedSeats = selectedSeats.filter(s => s !== seatNum);
+        } else {
+            if (selectedSeats.length >= 10) {
+                alert("You can select a maximum of 10 seats!");
+                return;
+            }
+            seatDiv.classList.add("selected");
+            selectedSeats.push(seatNum);
+        }
+        updateSeatInfo();
+    }
+
+    function updateSeatInfo() {
+        if (selectedSeats.length > 0) {
+            info.textContent = `Selected Seats: ${selectedSeats.join(", ")} | Total: ₹${selectedSeats.length * seatPrice}`;
+        } else {
+            info.textContent = `Select seats (₹${seatPrice} each)`;
+        }
+    }
+
+    document.getElementById("book-button").addEventListener("click", () => {
+        if (selectedSeats.length === 0) {
+            alert("Please select at least one seat!");
+            return;
+        }
+
+        fetch(`/movie/${movieId}/book_ticket/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify({
+                date: selectedDate,
+                time: selectedTime,
+                seats: selectedSeats
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert(`✅ Booked: ${data.seats.join(", ")} | Total ₹${data.total_price}`);
+                
+                // Redirect to ticket_show page using ticket_id returned from backend
+                if (data.ticket_id) {
+                    window.location.href = "{% url 'ticket_show' %}";
+                } else {
+                    location.reload(); // fallback
+                }
+            } else {
+                alert(`❌ Error: ${data.error}`);
+            }
+        })
+        .catch(err => console.error("Booking failed:", err));
+    });
+
+    updateSeatInfo();
+});
+</script>
+
+</body>
+</html>

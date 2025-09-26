@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     {% load django_bootstrap5 %}
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sheet select</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"> -->
+
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+
+    }
+    body{
+      background-color: black;
+    }
+    .box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: black;
+        color: white;
+    }
+    .col{
+        border: 1px solid green;
+        cursor: pointer;
+    }
+    .col:hover{
+        background-color: green;
+    }
+
+
+
+
+    .custom-hover::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  background-color: #007bff; /* underline color */
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.custom-hover:hover::after {
+  width: 100%;
+}
+
+.nav-link {
+  color: #222 !important;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #007bff !important;
+}
+</style>
+<body>
+  
+<div class="container mt-3">
+  <nav class="navbar"  style="background-color: #e3f2fd;">
+    <div class="one ms-lg-5 ">
+       <a class="navbar-brand text-black ms-lg-5 " href="{% url 'index' %}" >Home</a>
+       <a class="navbar-brand text-black ms-lg-5 " href="{% url 'movie' %}" >Movies</a>
+       <a class="navbar-brand text-black ms-lg-5 " href="{% url 'music' %}">Music</a>
+       <a class="navbar-brand text-black ms-lg-5" href="{% url 'comedy' %}">Comedy</a>
+       <a class="navbar-brand text-black ms-lg-5" href="{% url 'sports' %}">Sports</a>
+     </div>
+
+    <div class="two ms-lg-5 ps-lg-5">
+      <a class="navbar-brand text-black  ms-lg-5 ps-lg-5 " href="#">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="currentColor" " class="bi bi-person-circle " viewBox="0 0 16 16">
+       <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+       <path  fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+      </svg>
+     </a>
+    </div>
+  </nav>
+</div>
+
+
+    <div class=" box  d-flex flex-column ">
+        <div class="row mt-4">
+
+            <div class="col bg-success me-5">A</div>
+            <div class="col ms-5   ">1</div>
+            <div class="col ms-5   ">2</div>
+            <div class="col ms-5   ">3</div>
+            <div class="col ms-5  ">4</div>
+            <div class="col ms-5  ">5</div>
+            <div class="col ms-5  ">6</div>
+            <div class="col ms-5  ">7</div>
+            <div class="col ms-5  ">8</div>
+            <div class="col ms-5  ">9</div>
+            
+        </div>
+          <div class="row mt-4">
+
+            <div class="col bg-success me-5">B</div>
+            <div class="col ms-5 ">1</div>
+            <div class="col ms-5   ">2</div>
+            <div class="col ms-5   ">3</div>
+            <div class="col ms-5  ">4</div>
+            <div class="col ms-5  ">5</div>
+            <div class="col ms-5  ">6</div>
+            <div class="col ms-5  ">7</div>
+            <div class="col ms-5  ">8</div>
+            <div class="col ms-5  ">9</div>
+            
+        </div>
+          <div class="row mt-4">
+
+            <div class="col bg-success me-5">C</div>
+            <div class="col ms-5   ">1</div>
+            <div class="col ms-5   ">2</div>
+            <div class="col ms-5   ">3</div>
+            <div class="col ms-5  ">4</div>
+            <div class="col ms-5  ">5</div>
+            <div class="col ms-5  ">6</div>
+            <div class="col ms-5  ">7</div>
+            <div class="col ms-5  ">8</div>
+            <div class="col ms-5  ">9</div>
+            
+        </div>
+          <div class="row mt-4">
+
+            <div class="col bg-success me-5">D</div>
+            <div class="col ms-5   ">1</div>
+            <div class="col ms-5   ">2</div>
+            <div class="col ms-5   ">3</div>
+            <div class="col ms-5  ">4</div>
+            <div class="col ms-5  ">5</div>
+            <div class="col ms-5  ">6</div>
+            <div class="col ms-5  ">7</div>
+            <div class="col ms-5  ">8</div>
+            <div class="col ms-5  ">9</div>
+            
+        </div>
+          <div class="row mt-4">
+
+            <div class="col bg-success me-5">E</div>
+            <div class="col ms-5   ">1</div>
+            <div class="col ms-5   ">2</div>
+            <div class="col ms-5   ">3</div>
+            <div class="col ms-5  ">4</div>
+            <div class="col ms-5  ">5</div>
+            <div class="col ms-5  ">6</div>
+            <div class="col ms-5  ">7</div>
+            <div class="col ms-5  ">8</div>
+            <div class="col ms-5  ">9</div>
+            
+        </div>
+          <div class="row mt-4">
+
+            <div class="col bg-success me-5">F</div>
+            <div class="col ms-5   ">1</div>
+            <div class="col ms-5   ">2</div>
+            <div class="col ms-5   ">3</div>
+            <div class="col ms-5  ">4</div>
+            <div class="col ms-5  ">5</div>
+            <div class="col ms-5  ">6</div>
+            <div class="col ms-5  ">7</div>
+            <div class="col ms-5  ">8</div>
+            <div class="col ms-5  ">9</div>
+            
+        </div>
+          <div class="row mt-4">
+
+            <div class="col bg-success me-5">G</div>
+            <div class="col ms-5   ">1</div>
+            <div class="col ms-5   ">2</div>
+            <div class="col ms-5   ">3</div>
+            <div class="col ms-5  ">4</div>
+            <div class="col ms-5  ">5</div>
+            <div class="col ms-5  ">6</div>
+            <div class="col ms-5  ">7</div>
+            <div class="col ms-5  ">8</div>
+            <div class="col ms-5  ">9</div>
+            
+        </div>
+        <div class="seat text-center mt-5 d-flex">
+          Available seat :
+          <span>
+            <div style="border: 1px solid green; padding: 2px; width: 20px; height: 20px; background-color: green;" class="ms-2"></div>
+          </span>
+        </div>
+
+         <div class="seat text-center mt-2 d-flex">
+          unavilable seat :
+          <span>
+            <div style="border: 1px solid gray; padding: 2px; width: 20px; height: 20px; background-color: gray;" class="ms-2"></div>
+          </span>
+        </div>
+    </div>
+    
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from .models import MovieTicket, Ticket, MovieTiming
+from django.contrib import messages
+
+# Home page or movie list
+def screen(request, movie_id=None):
+    if movie_id:
+        # Show specific movie
+        movie = get_object_or_404(MovieTicket, id=movie_id)
+        return render(request, 'screen.html', {'movie': movie})
+    else:
+        # Show all movies
+        movies = MovieTicket.objects.all()
+        return render(request, 'screen_list.html', {'movies': movies})
+
+
+# Movie details page
+def movie_detail(request, mname):
+    movie = get_object_or_404(MovieTicket, name=mname)
+    return render(request, 'movie_detail.html', {'movie': movie})
+
+
+# Seats layout and booking page
+@login_required
+def seats(request, movie_id):
+    movie = get_object_or_404(MovieTicket, id=movie_id)
+    
+    # Get date and time from query parameters
+    date = request.GET.get('date')
+    time = request.GET.get('time')
+    
+    # Fetch already booked seats for this movie
+    booked_seats = Ticket.get_booked_seats(movie_id)
+    
+    # Example seat layout (A1 to G9)
+    rows = ["A","B","C","D","E","F","G"]
+    cols = 9
+    seats_layout = []
+    for row in rows:
+        row_seats = []
+        for col in range(1, cols+1):
+            seat = f"{row}{col}"
+            row_seats.append({
+                'seat_number': seat,
+                'booked': seat in booked_seats
+            })
+        seats_layout.append(row_seats)
+    
+    if request.method == 'POST':
+        selected_seats = request.POST.getlist('seats')
+        if not selected_seats:
+            messages.error(request, "Please select at least one seat")
+            return redirect(request.path)
+        
+        price_per_seat = 200  # Or fetch from MovieTiming if you want dynamic pricing
+        total_price = price_per_seat * len(selected_seats)
+        
+        # Create a ticket
+        Ticket.objects.create(
+            user=request.user,
+            movie=movie,
+            seats=selected_seats,
+            total_price=total_price
+        )
+        messages.success(request, f"Booking successful! Seats: {', '.join(selected_seats)}")
+        return redirect('ticket_show')
+    
+    return render(request, 'seats.html', {
+        'movie': movie,
+        'seats_layout': seats_layout,
+        'date': date,
+        'time': time
+    })
+
+
+# Show all booked tickets for the logged-in user
+@login_required
+def ticket_show(request):
+    tickets = Ticket.objects.filter(user=request.user).order_by('-booked_at')
+    return render(request, 'ticket_show.html', {'tickets': tickets})

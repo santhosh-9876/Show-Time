@@ -1,0 +1,144 @@
+{% load static %}
+
+
+<style>
+
+ 
+/* Make footer stick to bottom */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto; /* Push footer to bottom */
+}
+
+/* Optional: Mobile nav styling */
+.nav-links a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.nav-links a:hover {
+  background-color: #1a1a1a;
+}
+
+.nav-links img {
+  margin-bottom: 2px;
+}
+
+
+</style>
+
+
+
+    
+<!--------------------------------------------------------- footer ------------------------------------------------------------------------------------>
+<footer class="footer mt-auto sticky-bottom">
+<!-- mobile footer -->
+  <div class="container bg-black d-sm-block d-md-none p-0">
+    <div class="nav-links d-flex justify-content-around py-2">
+      <a href="{% url 'movie' %}" class="text-center text-decoration-none text-danger">
+        <img src="{% static 'image/Movie.png' %}" alt="" width="20" height="20">
+        <h6 class="mb-0">Movie</h6>
+      </a>
+
+      <a href="{% url 'music' %}" class="text-center text-decoration-none text-danger">
+        <img src="{% static 'image/music.png'%}" alt="" width="20" height="20">
+        <h6 class="mb-0">Music</h6>
+      </a>
+
+      <a href="{% url 'sports' %}" class="text-center text-decoration-none text-danger">
+        <img src="{% static 'image/sports.png'%}" alt="" width="20" height="20">
+        <h6 class="mb-0">Sport</h6>
+      </a>
+
+      <a href="{% url 'comedy' %}" class="text-center text-decoration-none text-danger">
+        <img src="{% static 'image/comedy.png'%}" alt="" width="20" height="20">
+        <h6 class="mb-0">Comedy</h6>
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Footer -->
+<footer class="container-fluid bg-dark text-light fw-medium py-4 mt-5 d-none d-md-block">
+  <div class="container">
+    <div class="row text-center text-md-start">
+      
+      <!-- Brand / About -->
+      <div class="col-md-4 mb-3">
+        <h2 class="fw-bold">🎬 Show Time</h2>
+        <div class="small fst-italic mt-3">
+          Movies. Music. Comedy. Sports.<br>
+          One destination, endless entertainment.
+        </div>
+        <div class="small mt-3 text-warning">
+          ⭐ Trusted by 1M+ movie lovers across India
+        </div>
+        <div class="small mt-3 " style="color: rgb(77, 226, 77);">
+          🏆 Awarded Best Online Ticketing Platform 2024
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-4 mb-3">
+        <h3 class="fw-bold">Explore</h3>
+        <ul class="list-unstyled small">
+          <li><a href="#" class="text-white text-decoration-none ms-3 ">Home</a></li>
+          <li><a href="{% url 'movie' %}" class="text-white text-decoration-none ms-3 ">Movies</a></li>
+          <li><a href="{% url 'music' %}" class="text-white text-decoration-none ms-3 ">Music</a></li>
+          <li><a href="{% url 'comedy' %}" class="text-white text-decoration-none ms-3 ">Comedy</a></li>
+          <li><a href="{% url 'sports' %}" class="text-white text-decoration-none ms-3 ">Sport</a></li>
+          
+        </ul>
+        
+      </div>
+
+      <!-- Contact / Social -->
+      <div class="col-md-4 mb-3">
+        <h3 class="fw-bold">Connect With Us</h3>
+        <p class="small mb-1">📧 support@showtime.com</p>
+        <p class="small mb-2">📞 +91 98765 43210</p>
+      <div class="d-flex mt-2">
+  <a href="#" class="text-white fw-bolder log_footer me-3 d-flex justify-content-center align-items-center"
+     style="width: 40px; height: 40px; border: 2px solid white; border-radius: 50%;">
+    <i class="bi bi-facebook"></i>
+  </a>
+  <a href="#" class="text-white fw-bolder log_footer me-3 d-flex justify-content-center align-items-center"
+     style="width: 40px; height: 40px; border: 2px solid white; border-radius: 50%;">
+    <i class="bi bi-instagram"></i>
+  </a>
+  <a href="#" class="text-white d-flex fw-bolder log_footer justify-content-center align-items-center"
+     style="width: 40px; height: 40px; border: 2px solid white; border-radius: 50%;">
+    <i class="bi bi-twitter"></i>
+  </a>
+</div>
+<div class="small mt-3">
+          🚀 Coming Soon: Show Time App on iOS & Android
+        </div>
+       
+      </div>
+
+    </div>
+
+            <div class="small mt-3 text-center">
+          <strong>Popular Cities:</strong><br>
+          Mumbai | Delhi | Bengaluru | Hyderabad | Chennai | Pune
+        </div>
+    <hr class="border-light">
+    <div class="text-center small">
+      © 2025 Show Time | Powered by Escobar.in | All Rights Reserved
+    </div>
+  </div>
+</footer>
