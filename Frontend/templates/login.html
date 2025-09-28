@@ -16,14 +16,20 @@
 
 
 </head>
-<body style="background-color: rgb(212, 207, 207);">
+<style>
+  body {
+  padding-bottom: 60px; /* adjust to footer height */
+}
+
+</style>
+<body  style="background-color: rgb(212, 207, 207);">
    {% include 'navbar1.html' %}
 
 
-           <div class="container-fluid" style="height: 79vh;">
-  <div class="row d-flex justify-content-center mt-5">
-    <div class="col-12 col-sm-8 col-md-6 col-lg-4"> <!-- responsive column -->
-      <h3 class="text-center">Login</h3>
+<div class="container  position-sticky my-5 leo"  >
+    <div class="row justify-content-center  custom-input  " >
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 " >
+            <h3 class="mb-4 text-center">log in</h3>
 
       <!-- Success messages -->
       {% if messages %}
@@ -73,23 +79,57 @@
 
           <!-- Actions -->
           <div class="my-3 d-flex justify-content-between align-items-center">
-            <a href="{% url 'forgot_password' %}">Forgot Password?</a>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <a class="text-danger" href="{% url 'forgot_password' %}">Forgot Password?</a>
+            <button type="submit" class="btn btn-danger">Login</button>
           </div>
         </form>
       </div>
 
       <!-- Register redirect -->
       <div class="text-center mt-3">
-        <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+        <p>Don't have an account? <a class="text-danger" href="{% url 'register' %}">Register</a></p>
       </div>
 
     </div>
   </div>
 </div>
+<!-- !--------------------------------------------------------- footer ------------------------------------------------------------------------------------> 
+<footer class="footer mt-auto">
+  <!-- Mobile Footer -->
+  <div class="container foot d-sm-block d-md-none text-danger p-0 fixed-bottom bg-black shadow">
+    <div class="nav-links d-flex justify-content-around py-2 text-danger">
+      <a href="{% url 'movie' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-film text-danger"></i>
+        <h6 class="mb-0 text-danger">Movie</h6>
+      </a>
 
+      <a href="{% url 'music' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-music text-danger"></i>
+        <h6 class="mb-0 text-danger">Music</h6>
+      </a>
 
-     {% include 'footer.html' %}
+      <a href="{% url 'sports' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-football text-danger"></i>
+        <h6 class="mb-0 text-danger">Sport</h6>
+      </a>
+
+      <a href="{% url 'comedy' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-masks-theater text-danger"></i>
+        <h6 class="mb-0 text-danger">Comedy</h6>
+      </a>
+    </div>
+  </div>
+
+  <!-- Desktop Footer -->
+  <div class="container-fluid py-3 bg-black d-none d-md-block fixed-bottom">
+    <div class="d-flex justify-content-evenly text-white fw-bold">
+      <span>@ 2025 Show Time</span>
+      <span>Escobar.in</span>
+      <span>All Rights Reserved</span>
+    </div>
+  </div>
+</footer>
+
 </body>
 
 </html>

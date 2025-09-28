@@ -21,10 +21,12 @@
     
     
 
-    <div class="d-flex overflow-auto hide-scrollbar" style="gap: 50px; scroll-behavior: smooth;">
+    <div class="d-flex overflow-auto hide-scrollbar " style="gap: 50px; scroll-behavior: smooth;">
 
       {% for i in MoviesTicket %}
       {% if i.nowShowing %}
+
+      
         <div class="card shadow flex-shrink-0" style="width: 350px; height: 450px;">
             <a href="{% url 'movie_detail' i.name %}" class="text-decoration-none">
             <img class="img-fluid img-thumbnail card-image"

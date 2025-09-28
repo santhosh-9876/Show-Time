@@ -86,13 +86,10 @@
         </div>
     </div>
 </div>
-
-
 <!-- !--------------------------------------------------------- footer ------------------------------------------------------------------------------------> 
-
-<footer class="footer bg-black text-danger  py-2 mt-5">
-  <!-- mobile footer -->
-  <div class="container foot d-sm-block d-md-none text-danger p-0">
+<footer class="footer mt-auto">
+  <!-- Mobile Footer -->
+  <div class="container foot d-sm-block d-md-none text-danger p-0 fixed-bottom bg-black shadow">
     <div class="nav-links d-flex justify-content-around py-2 text-danger">
       <a href="{% url 'movie' %}" class="text-center text-decoration-none text-black">
         <i class="fa-solid fa-film text-danger"></i>
@@ -117,7 +114,7 @@
   </div>
 
   <!-- Desktop Footer -->
-  <div class="container-fluid py-3  bg-black d-none d-md-block" >
+  <div class="container-fluid py-3 bg-black d-none d-md-block fixed-bottom">
     <div class="d-flex justify-content-evenly text-white fw-bold">
       <span>@ 2025 Show Time</span>
       <span>Escobar.in</span>
@@ -125,7 +122,6 @@
     </div>
   </div>
 </footer>
-
 
 
 </body>
