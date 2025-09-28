@@ -16,13 +16,16 @@
 
 
 </head>
+<style>
+
+</style>
 <body style="background-color: rgb(212, 207, 207);">
 
  {% include 'navbar1.html' %}
 
-<div class="container my-5">
-    <div class="row justify-content-center" style="height: 74vh;">
-        <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+<div class="container  position-sticky my-5 leo"  >
+    <div class="row justify-content-center  custom-input  " >
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 " >
             <h3 class="mb-4 text-center">Register</h3>
 
 
@@ -76,14 +79,55 @@
                 {% endif %}
 
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-danger">Register</button>
                 </div>
             </form>
 
         </div>
     </div>
 </div>
- {% include 'footer.html' %}
+
+
+<!-- !--------------------------------------------------------- footer ------------------------------------------------------------------------------------> 
+
+<footer class="footer bg-black text-danger  py-2 mt-5">
+  <!-- mobile footer -->
+  <div class="container foot d-sm-block d-md-none text-danger p-0">
+    <div class="nav-links d-flex justify-content-around py-2 text-danger">
+      <a href="{% url 'movie' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-film text-danger"></i>
+        <h6 class="mb-0 text-danger">Movie</h6>
+      </a>
+
+      <a href="{% url 'music' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-music text-danger"></i>
+        <h6 class="mb-0 text-danger">Music</h6>
+      </a>
+
+      <a href="{% url 'sports' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-football text-danger"></i>
+        <h6 class="mb-0 text-danger">Sport</h6>
+      </a>
+
+      <a href="{% url 'comedy' %}" class="text-center text-decoration-none text-black">
+        <i class="fa-solid fa-masks-theater text-danger"></i>
+        <h6 class="mb-0 text-danger">Comedy</h6>
+      </a>
+    </div>
+  </div>
+
+  <!-- Desktop Footer -->
+  <div class="container-fluid py-3  bg-black d-none d-md-block" >
+    <div class="d-flex justify-content-evenly text-white fw-bold">
+      <span>@ 2025 Show Time</span>
+      <span>Escobar.in</span>
+      <span>All Rights Reserved</span>
+    </div>
+  </div>
+</footer>
+
+
+
 </body>
 
 </html>
