@@ -41,34 +41,36 @@ body {
 
 
 
-    
-<!--------------------------------------------------------- footer ------------------------------------------------------------------------------------>
+  
 <footer class="footer mt-auto sticky-bottom">
-<!-- mobile footer -->
-  <div class="container bg-black d-sm-block d-md-none p-0">
+  <!-- Mobile Footer -->
+  <div class="container bg-black foot d-sm-block d-md-none p-0 pt-3">
     <div class="nav-links d-flex justify-content-around py-2">
+      
       <a href="{% url 'movie' %}" class="text-center text-decoration-none text-danger">
-        <img src="{% static 'image/Movie.png' %}" alt="" width="20" height="20">
-        <h6 class="mb-0">Movie</h6>
+        <i class="fa-solid fa-film fa-lg mb-1"></i>
+        <div><small>Movie</small></div>
       </a>
 
       <a href="{% url 'music' %}" class="text-center text-decoration-none text-danger">
-        <img src="{% static 'image/music.png'%}" alt="" width="20" height="20">
-        <h6 class="mb-0">Music</h6>
+        <i class="fa-solid fa-music fa-lg mb-1"></i>
+        <div><small>Music</small></div>
       </a>
 
       <a href="{% url 'sports' %}" class="text-center text-decoration-none text-danger">
-        <img src="{% static 'image/sports.png'%}" alt="" width="20" height="20">
-        <h6 class="mb-0">Sport</h6>
+        <i class="fa-solid fa-football fa-lg mb-1"></i>
+        <div><small>Sport</small></div>
       </a>
 
       <a href="{% url 'comedy' %}" class="text-center text-decoration-none text-danger">
-        <img src="{% static 'image/comedy.png'%}" alt="" width="20" height="20">
-        <h6 class="mb-0">Comedy</h6>
+        <i class="fa-solid fa-masks-theater fa-lg mb-1"></i>
+        <div><small>Comedy</small></div>
       </a>
+
     </div>
   </div>
 </footer>
+
 
 
 <!-- Footer -->
